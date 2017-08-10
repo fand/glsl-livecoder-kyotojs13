@@ -1,3 +1,103 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 precision mediump float;
 uniform float time;
 uniform vec2 resolution;
@@ -15,12 +115,12 @@ uniform sampler2D image19;
 uniform sampler2D image20;
 
 float nano(in float ch) {
-  return texture2D(midi, vec2((224. + ch) / 256., .0)).x * 2.; // [0, 1)
+  return texture2D(midi, vec2(176. / 256., ch / 128.)).x * 2.; // [0, 1)
 }
 
 vec2 distort(in vec2 uv) {
   float t = time * .2 + length(uv - .5) * .00001;
-  t *= nano(6.) * .1;
+  t *= nano(16.) * -.1;
   uv = mat2(cos(t), -sin(t), sin(t), cos(t)) * (uv - .5) + .5;
   return vec2(
     uv.x + sin(uv.y * 20. + time) * .02 * cos(uv.y + uv.x * 20.),
@@ -49,51 +149,3 @@ void main() {
   float m = nano(7.);
   gl_FragColor /= (1.- m) + back2 * m;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
